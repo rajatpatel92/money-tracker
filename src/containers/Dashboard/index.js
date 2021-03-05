@@ -23,7 +23,7 @@ class Dashboard extends React.Component {
       <div className="container-full-page">
         <Grid>
           <Grid.Row>
-            <Grid.Column computer={6} mobile={16}>
+            <Grid.Column computer={8} mobile={16}>
               <CollapsibleSection
                 name="net_worth"
                 label="Net Worth"
@@ -32,7 +32,7 @@ class Dashboard extends React.Component {
                 <Accounts />
               </CollapsibleSection>
             </Grid.Column>
-            <Grid.Column computer={10} mobile={16}>
+            <Grid.Column computer={8} mobile={16}>
               <CollapsibleSection name="add_tx" label="New Transaction">
                 <TransactionForm />
               </CollapsibleSection>

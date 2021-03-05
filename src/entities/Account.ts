@@ -44,7 +44,8 @@ export enum AccountGroupT {
   Bank = 'bank',
   Deposit = 'deposit',
   Credit = 'credit',
-  Asset = 'asset'
+  Asset = 'asset',
+  Equity = 'equity'
 }
 
 export enum DeleteStrategyT {
@@ -56,7 +57,8 @@ export enum DeleteStrategyT {
 const GroupToTextMap: { [code in AccountGroupT]?: string } = {
   [AccountGroupT.Cash]: 'Cash',
   [AccountGroupT.Bank]: 'Bank Account',
-  [AccountGroupT.Deposit]: 'Deposit',
+  [AccountGroupT.Deposit]: 'Fixed Deposit',
+  [AccountGroupT.Equity]: 'Equity',
   [AccountGroupT.Credit]: 'Credit',
   [AccountGroupT.Asset]: 'Asset'
 };
