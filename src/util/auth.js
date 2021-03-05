@@ -52,12 +52,12 @@ function parseHash() {
   });
 }
 
-function getUserInfo(accessToken) {
+function getUserInfo(accessToken, authNamespace) {
   return new Promise((resolve, reject) => {
     auth0.client.userInfo(accessToken, (error, userInfo) => {
       if (error) return reject(error);
-
-      resolve({ accessToken, couchDB: userInfo.couchDB });
+      const { [authNamespace]: app_metadata } = userInfo;
+      resolve({ accessToken, couchDB: app_metadata.couchDB });
     });
   });
 }

@@ -1,8 +1,12 @@
+import { getParsedCommandLineOfConfigFile } from 'typescript';
+
 export default CouchDbProvision;
 
 function CouchDbProvision(user, context, callback) {
   const request = require('request');
   const uuidv4 = require('uuid').v4;
+  const dbname = uuidv4();
+  //const password = uuidv4();
   const databases = ['accounts', 'transactions', 'tags', 'settings'];
   var cookie;
 
@@ -10,9 +14,9 @@ function CouchDbProvision(user, context, callback) {
   user.app_metadata.couchDB = user.app_metadata.couchDB || {};
 
   loginAsAdmin()
-    .then(provisionUser)
+    //.then(provisionUser)
     .then(() => Promise.all(databases.map(provisionDatabase)))
-    .then(() => Promise.all(databases.map(provisionSecurity)))
+    //.then(() => Promise.all(databases.map(provisionSecurity)))
     .then(() => auth0.users.updateAppMetadata(user.user_id, user.app_metadata))
     .then(() => callback(null, user, context))
     .catch(err => callback(err));
@@ -31,8 +35,11 @@ function CouchDbProvision(user, context, callback) {
         },
         (err, response) => {
           if (err) return reject(err);
-
           cookie = response.headers['set-cookie'];
+          console.log(`cookie: ${cookie}`);
+          user.app_metadata.couchDB.username = configuration['CouchAdminUser'];
+          user.app_metadata.couchDB.password = configuration['CouchAdminPass'];
+          user.app_metadata.couchDB.dbname = dbname;
           resolve();
         }
       );
@@ -79,7 +86,7 @@ function CouchDbProvision(user, context, callback) {
         (err, response, body) => {
           if (err) return reject(err);
           if (!body.ok) return reject('Could not create database');
-
+          user.app_metadata.couchDB[name] = databaseUri(name);
           resolve();
         }
       );
@@ -114,7 +121,7 @@ function CouchDbProvision(user, context, callback) {
 
   function databaseUri(name) {
     return `${configuration['CouchHost']}/${name}_${
-      user.app_metadata.couchDB.username
+      user.app_metadata.couchDB.dbname
     }`;
   }
 }

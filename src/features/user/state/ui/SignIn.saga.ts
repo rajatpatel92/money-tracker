@@ -30,7 +30,7 @@ export function* verifyCodeSaga() {
 
 export function* finishAuthSaga() {
   const accessToken = yield call(Auth.parseHash);
-  const userInfo = yield call(Auth.getUserInfo, accessToken);
+  const userInfo = yield call(Auth.getUserInfo, accessToken, process.env.REACT_APP_AUTH_NAMESPACE);
   yield call([localStorage, 'setItem'], 'userInfo', JSON.stringify(userInfo));
 
   yield loadSetting();
