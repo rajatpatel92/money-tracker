@@ -77,7 +77,7 @@
 
 .account-widget-account__name {
   flex-basis: 100%;
-  white-space: nowrap;
+  white-space: wrap;
 }
 
 .account-widget-account__balance {

@@ -126,7 +126,7 @@ nav .menu .item:last-child {
   }
 }
 
-@media (min-width: 768px) and (max-width: 1275px) {
+@media (min-width: 768px) and (max-width: 1425px) {
   html,
   body {
     background-color: white;
@@ -142,7 +142,7 @@ nav .menu .item:last-child {
   }
 }
 
-@media (min-width: 1275px) {
+@media (min-width: 1400px) {
   .container-full-page {
     max-width: 1260px;
     margin: 1em auto;
