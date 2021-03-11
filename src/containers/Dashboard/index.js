@@ -10,6 +10,7 @@ import RecentTransactions from './RecentTransactions';
 import { loadAccounts } from '../../actions/entities/accounts';
 import { loadRecentTransactions } from '../../actions/entities/transactions';
 import { loadTags } from '../../actions/entities/tags';
+import AssetAllocation from 'components/AssetAllocation';
 
 class Dashboard extends React.Component {
   componentDidMount() {
@@ -29,6 +30,7 @@ class Dashboard extends React.Component {
                 label="Net Worth"
                 LabelComponent={NetWorth}
               >
+                <AssetAllocation/>
                 <Accounts />
               </CollapsibleSection>
             </Grid.Column>

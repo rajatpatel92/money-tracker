@@ -29,6 +29,16 @@ export const getVisibleAccountsList = createSelector(
   accounts => accounts.filter(account => !account.archived)
 );
 
+export const getLiquidAccountsList = createSelector (
+  getAccountsList,
+  accounts => accounts.filter(account => !account.non_liquid)
+)
+
+export const getNonLiquidAccountsList = createSelector (
+  getAccountsList,
+  accounts => accounts.filter(account => account.non_liquid)
+)
+
 export const getDashboardAccountsList = createSelector(
   getVisibleAccountsList,
   accounts => accounts.filter(account => account.on_dashboard)
@@ -136,6 +146,28 @@ export const getNetWorth = createSelector(
       (netWorth, account) => netWorth + getBaseTotal(account, base, rate),
       0
     )
+);
+
+export const getLiquidAssets = createSelector(
+  getLiquidAccountsList,
+  getBaseCurrency,
+  getExchangeRate,
+  (accounts, base, rate) =>
+    accounts.reduce(
+    (netWorth, account) => netWorth + getBaseTotal(account, base, rate),
+    0
+  )
+);
+
+export const getNonLiquidAssets = createSelector(
+  getNonLiquidAccountsList,
+  getBaseCurrency,
+  getExchangeRate,
+  (accounts, base, rate) =>
+    accounts.reduce(
+    (netWorth, account) => netWorth + getBaseTotal(account, base, rate),
+    0
+  )
 );
 
 const getBaseTotal = (account, base, rate) =>

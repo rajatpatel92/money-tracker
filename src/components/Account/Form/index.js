@@ -42,14 +42,21 @@ class AccountForm extends React.Component {
         </Form.Group>
         <BalanceTable {...this.props} />
         <Form.Group unstackable>
-          <Form.Field width={9} style={{ paddingTop: '0.5em' }}>
+          <Form.Field width={5} style={{ paddingTop: '0.5em' }}>
             <Checkbox
               label="Show on Dashboard"
               checked={this.props.form.on_dashboard}
               onChange={this.props.toggleOnDashboard}
             />
           </Form.Field>
-          <Form.Button width={7} primary fluid content="Save Account" />
+          <Form.Field width={5} style={{ paddingTop: '0.5em' }}>
+            <Checkbox
+              label="Non-liquid Account"
+              checked={this.props.form.non_liquid}
+              onChange={this.props.toggleNonLiquid}
+            />
+          </Form.Field>
+          <Form.Button width={6} primary fluid content="Save Account" />
         </Form.Group>
       </Form>
     );
@@ -63,13 +70,15 @@ AccountForm.propTypes = {
     group: PropTypes.string,
     balance: PropTypes.objectOf(PropTypes.string),
     currencies: PropTypes.arrayOf(PropTypes.string),
-    on_dashboard: PropTypes.bool
+    on_dashboard: PropTypes.bool,
+    non_liquid: PropTypes.bool
   }),
   base: PropTypes.string.isRequired,
   secondary: PropTypes.arrayOf(PropTypes.string),
   changeName: PropTypes.func,
   changeGroup: PropTypes.func,
   toggleOnDashboard: PropTypes.func,
+  toggleNonLiquid: PropTypes.func.isRequired,
   toggleCurrency: PropTypes.func.isRequired,
   changeBalance: PropTypes.func.isRequired,
   saveAccount: PropTypes.func

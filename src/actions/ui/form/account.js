@@ -8,7 +8,8 @@ export const {
   changeGroup,
   changeBalance,
   toggleCurrency,
-  toggleOnDashboard
+  toggleOnDashboard,
+  toggleNonLiquid
 } = createActions(
   'FILL_IN_ACCOUNT_FORM',
   'RESET_ACCOUNT_FORM',
@@ -17,5 +18,6 @@ export const {
   'CHANGE_GROUP',
   'CHANGE_BALANCE',
   'TOGGLE_CURRENCY',
-  'TOGGLE_ON_DASHBOARD'
+  'TOGGLE_ON_DASHBOARD',
+  'TOGGLE_NON_LIQUID'
 );

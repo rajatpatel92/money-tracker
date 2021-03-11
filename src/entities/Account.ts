@@ -13,6 +13,7 @@ interface AccountBaseT {
   name: string;
   currencies: string[];
   on_dashboard: boolean;
+  non_liquid: boolean;
   archived?: boolean;
 }
 
@@ -108,6 +109,7 @@ export function formTostate({
   group,
   currencies,
   on_dashboard,
+  non_liquid,
   archived
 }: AccountFormT): AccountStateT {
   return {
@@ -126,6 +128,7 @@ export function formTostate({
     group,
     currencies,
     on_dashboard,
+    non_liquid,
     archived
   };
 }
@@ -150,6 +153,7 @@ export function storageToState({
   balance,
   currencies,
   on_dashboard,
+  non_liquid,
   archived
 }: AccountStorageT): AccountStateT {
   return {
@@ -159,6 +163,7 @@ export function storageToState({
     balance,
     currencies,
     on_dashboard,
+    non_liquid,
     archived
   };
 }
@@ -169,9 +174,10 @@ export function stateToStorage({
   balance,
   currencies,
   on_dashboard,
+  non_liquid,
   archived
 }: AccountStateT) {
-  return { name, group, balance, currencies, on_dashboard, archived };
+  return { name, group, balance, currencies, on_dashboard, non_liquid, archived };
 }
 
 export function mutateBalance(

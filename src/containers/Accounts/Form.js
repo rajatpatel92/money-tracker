@@ -5,6 +5,7 @@ import {
   changeGroup,
   changeBalance,
   toggleOnDashboard,
+  toggleNonLiquid,
   toggleCurrency
 } from '../../actions/ui/form/account';
 import { saveAccount, removeAccount } from '../../actions/entities/accounts';
@@ -28,6 +29,7 @@ export default connect(
     changeBalance,
     toggleCurrency,
     toggleOnDashboard,
+    toggleNonLiquid,
     saveAccount,
     removeAccount
   }

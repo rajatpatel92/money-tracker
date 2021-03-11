@@ -5,6 +5,7 @@ import {
   openAccountInModal,
   resetAccountForm,
   toggleOnDashboard,
+  toggleNonLiquid,
   toggleCurrency,
   changeBalance,
   changeGroup,
@@ -27,6 +28,7 @@ const initialState = {
   balance: {},
   currencies: [],
   on_dashboard: true,
+  non_liquid: false,
   completed: false,
   isModalOpen: false,
   isDeleteRequest: false,
@@ -62,6 +64,10 @@ export default handleActions(
     [toggleOnDashboard]: state => ({
       ...state,
       on_dashboard: !state.on_dashboard
+    }),
+    [toggleNonLiquid]: state => ({
+      ...state,
+      non_liquid: !state.non_liquid
     }),
     [changeSettingsCurrency]: (state, { payload }) => {
       const currencies = new Set([payload.base, ...payload.secondary]);
